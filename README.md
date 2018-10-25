@@ -1,3 +1,5 @@
+[![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://survicate.com/mobile-surveys/)
+
 # Mobile SDK - Android
 
 The Survicate Mobile SDK for Android allows you to survey specific groups of your mobile app users to understand their needs, expectations, and objections. This SDK is maintained by Survicate. If you're interested in iOS version go [here](https://github.com/Survicate/survicate-ios-sdk).
@@ -11,7 +13,7 @@ Declare maven repository:
 ```groovy
 repositories {
     // ...
-    maven { url "http://repo.survicate.com" }
+    maven { url 'http://repo.survicate.com' }
 }
 ```
 
@@ -19,7 +21,7 @@ And add the following dependency to your app's `build.gradle` file:
 ```groovy
 dependencies {
     // ...
-    implementation 'com.survicate:survicate-sdk:1.0.0'
+    implementation 'com.survicate:survicate-sdk:1.+'
 }
 ```
 
@@ -48,9 +50,6 @@ If you need to debug your surveys in application, enable logger by changing seco
 Survicate.init(this, true);
 ```
 
-Make sure to list all the screens and events described in your application.
-Once you got this covered, you or any person responsible for creating and managing surveys will be able to trigger them from Survicate panel with no need for you to update the application. 
-
 ### Displaying Surveys
 Survicate gives you the ability to send targeted surveys to your users within your app in a simple, easy, and fast way for you as well as Survicate application users.
 Within Survicate Panel you can choose criteria that your users have to meet in order for the surveys to appear in different ways.
@@ -63,6 +62,9 @@ Available conditions:
 - Language
 - Known user
 - Operating system
+
+Make sure to list all the screens and events described in your application.
+Once you got this covered, you or any person responsible for creating and managing surveys will be able to trigger them from Survicate panel with no need for you to update the application.
 
 ### Application screens
 A survey can appear when your application user is viewing a specific screen.
