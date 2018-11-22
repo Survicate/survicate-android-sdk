@@ -9,11 +9,13 @@ The Survicate Mobile SDK for Android allows you to survey specific groups of you
 SDK works on Android at least on version 4.4.
 
 ## Installation
-Declare maven repository:
+Define maven repository in top-level `build.gradle` file:
 ```groovy
-repositories {
-    // ...
-    maven { url 'http://repo.survicate.com' }
+allprojects {
+    repositories {
+        // ...
+        maven { url 'http://repo.survicate.com' }
+    }
 }
 ```
 
@@ -40,14 +42,9 @@ You should initialize the SDK in your application class.
 ```java
 public class App extends Application {
   @Override public void onCreate() {
-    Survicate.init(this, false);
+    Survicate.init(this);
   }
 }   
-```
-
-If you need to debug your surveys in application, enable logger by changing second parameter to `true`:
-```java
-Survicate.init(this, true);
 ```
 
 ### Displaying Surveys
