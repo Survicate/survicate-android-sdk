@@ -1,5 +1,5 @@
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](https://survicate.com/mobile-surveys/)
-
+[![Maven](https://img.shields.io/maven-metadata/v?metadataUrl=http%3A%2F%2Frepo.survicate.com%2Fcom%2Fsurvicate%2Fsurvicate-sdk%2Fmaven-metadata.xml)](https://developers.survicate.com/mobile-sdk/#android)
 # Mobile SDK - Android
 
 The **Survicate Mobile SDK** for Android allows you to survey specific groups of your mobile app users to understand their needs, expectations, and objections. This SDK is maintained by Survicate.
