@@ -180,6 +180,20 @@ button.setOnClickListener {
 Please keep in mind that user traits are cached, you only have to provide them once, e.g. when user logs in, NOT after each init().
 You can also change their values at any time (which may potentially trigger showing the survey).
 
+### Reset
+
+If you need to test surveys on your device, `reset()` method might be helpful. This method will reset all user data stored on your device (views, traits, answers).
+
+Java:
+```java
+Survicate.reset();
+```
+
+Kotlin:
+```kotlin
+Survicate.reset()
+```
+
 ## Customer Support
 
 👋 If you bump into any problems or need more support contact us at hello@survicate.com
