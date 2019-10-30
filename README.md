@@ -14,6 +14,8 @@ To use this SDK you need an account at [survicate.com](https://survicate.com).
 [Sign up](https://panel.survicate.com/#/signup) for free and find your workspace key in Tracking Code section.
 
 ## Installation
+
+### Maven
 Define maven repository in top-level `build.gradle` file:
 ```groovy
 allprojects {
@@ -33,6 +35,26 @@ dependencies {
 ```
 
 *For production environment, it is a good practice to define specific SDK version. Just replace last part of dependency `1.+` with version you want to use.*
+
+### Manual installation
+
+[Download Survicate for Android](https://repo.survicate.com/latest/android/Survicate.aar) and copy it to `libs` directory of your app.
+
+Add the following dependencies to your app's `build.gradle` file:
+```groovy
+dependencies {
+    // ...
+    implementation files('libs/Survicate.aar')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.squareup.moshi:moshi:1.8.0'
+    implementation 'com.android.support:transition:28.0.0'
+}
+```
+
+Keep in mind that with updating version by manual installation you need to update SDK dependencies versions too.
 
 ## Setup
 Add workspace key to your `AndroidManifest.xml` file:
