@@ -38,7 +38,7 @@ dependencies {
 
 ### Manual installation
 
-[Download Survicate for Android](https://repo.survicate.com/latest/android/Survicate.aar) and copy it to `libs` directory of your app.
+[Download Survicate for Android](https://repo.survicate.com/latest/android/Survicate.aar) and copy it to `app/libs` directory of your project.
 
 Add the following dependencies to your app's `build.gradle` file:
 ```groovy
