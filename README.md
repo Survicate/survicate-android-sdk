@@ -4,24 +4,24 @@
 
 The **Survicate Mobile SDK** for Android allows you to survey specific groups of your mobile app users to understand their needs, expectations, and objections. This SDK is maintained by Survicate.
 
-If you're interested in iOS version go [here](https://github.com/Survicate/survicate-ios-sdk).
+Check also the [developer docs](https://developers.survicate.com/mobile-sdk/android/). If you're interested in iOS version go [here](https://github.com/Survicate/survicate-ios-sdk). 
 
 ## Requirements
 
-SDK works on Android at least on version 4.4.
+SDK works on Android at least on version 5.
 
 To use this SDK you need an account at [survicate.com](https://survicate.com).
 [Sign up](https://panel.survicate.com/#/signup) for free and find your workspace key in Tracking Code section.
 
 ## Installation
 
-### Maven
+### Maven installation (recommended)
 Define maven repository in top-level `build.gradle` file:
 ```groovy
 allprojects {
     repositories {
         // ...
-        maven { url 'http://repo.survicate.com' }
+        maven { url 'https://repo.survicate.com' }
     }
 }
 ```
@@ -45,12 +45,20 @@ Add the following dependencies to your app's `build.gradle` file:
 dependencies {
     // ...
     implementation files('libs/Survicate.aar')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.squareup.moshi:moshi:1.8.0'
-    implementation 'com.android.support:transition:28.0.0'
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.3.2"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.transition:transition:1.4.1"
+    implementation "androidx.annotation:annotation:1.7.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    implementation "com.squareup.moshi:moshi:1.15.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.15.0"
+
+    // since SDK version 2.0.0
+    implementation "io.coil-kt:coil-base:2.5.0"
+    implementation "io.coil-kt:coil-gif:2.5.0"
+    implementation "io.coil-kt:coil-svg:2.5.0"
 }
 ```
 
@@ -69,19 +77,6 @@ Add workspace key to your `AndroidManifest.xml` file:
 
 You should initialize the SDK in your application class.
 
-Java:
-```java
-import android.app.Applicaton;
-import com.survicate.surveys.Survicate;
-
-public class MyApp extends Application {
-    @Override public void onCreate() {
-      super.onCreate();
-      Survicate.init(this);
-    }
-}
-```
-
 Kotlin:
 ```kotlin
 import android.app.Applicaton
@@ -92,6 +87,20 @@ class MyApp : Application() {
       super.onCreate()
       Survicate.init(this)
     }  
+}
+```
+
+Java:
+```java
+import android.app.Applicaton;
+import com.survicate.surveys.Survicate;
+
+public class MyApp extends Application {
+    @Override
+    public void onCreate() {
+      super.onCreate();
+      Survicate.init(this);
+    }
 }
 ```
 
@@ -116,6 +125,25 @@ A survey can appear when your application user is viewing a specific screen.
 As an example, a survey can be triggered to show up on the home screen of the application, after a user spends there more than 10 seconds.
 To achieve such effect, you need to send information to Survicate about user entering and leaving a screen. 
 
+Kotlin:
+```kotlin
+class PurchaseSuccessActivity : Activity() {
+
+    val SCREEN_NAME = "purchaseSuccess"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // ...
+        Survicate.enterScreen(SCREEN_NAME)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Survicate.leaveScreen(SCREEN_NAME)        
+    }
+}
+```
+
 Java:
 ```java
 public class PurchaseSuccessActivity extends Activity {
@@ -138,27 +166,15 @@ public class PurchaseSuccessActivity extends Activity {
 }
 ```
 
-Kotlin:
-```kotlin
-class PurchaseSuccessActivity : Activity() {
-
-    val SCREEN_NAME = "purchaseSuccess"
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // ...
-        Survicate.enterScreen(SCREEN_NAME)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Survicate.leaveScreen(SCREEN_NAME)        
-    }
-}
-```
-
 ### Events
 You can log custom user events throughout your application. They can later be used to trigger the survey. 
+
+Kotlin:
+```kotlin
+button.setOnClickListener {
+    Survicate.invokeEvent("userPressedPurchase")
+}
+```
 
 Java:
 ```java
@@ -170,33 +186,49 @@ purchaseBtn.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
+### User traits
+You can assign custom attributes to your users. Those attributes can later be used to trigger the survey or even filter the survey results within Survicate panel. See details in the [docs](https://developers.survicate.com/mobile-sdk/android/).
+
 Kotlin:
 ```kotlin
-button.setOnClickListener {
-    Survicate.invokeEvent("userPressedPurchase")
-}
-```
+// set a single trait
+val trait = UserTrait("user_id", "YourUserID")
+Survicate.setUserTrait(trait)
 
-### User traits
-You can assign custom attributes to your users. Those attributes can later be used to trigger the survey or even filter the survey results within Survicate panel. 
+// or multiple traits at once
+val textTrait = UserTrait("my_custom_attribute", "some value")
+val numberTrait = UserTrait("age", 18)
+val booleanTrait =  UserTrait("subscription_active", true)
+val dateTrait = UserTrait("purchase_date", Date())
+
+val traits = listOf(
+    textTrait,
+    numberTrait,
+    booleanTrait,
+    dateTrait
+)
+Survicate.setUserTraits(traits)
+```
 
 Java:
 ```java
-List<UserTrait> traits = new ArrayList<>();
-traits.add(new UserTrait.UserId("someUserId"));
-traits.add(new UserTrait.FirstName("John"));
-traits.add(new UserTrait("eyes", "blue"));
+// set a single trait
+UserTrait trait = new UserTrait("user_id", "YourUserID");
+Survicate.setUserTrait(trait);
+
+// or multiple traits at once
+UserTrait textTrait = new UserTrait("my_custom_attribute", "some value");
+UserTrait numberTrait = new UserTrait("age", 18);
+UserTrait booleanTrait = new UserTrait("subscription_active", true);
+UserTrait dateTrait = new UserTrait("purchase_date", new Date());
+
+List<UserTrait> traits = Arrays.asList(
+    textTrait,
+    numberTrait,
+    booleanTrait,
+    dateTrait
+);
 Survicate.setUserTraits(traits);
-
-// or just
-Survicate.setUserTrait(new UserTrait.UserId("someOtherUserId"));
-```
-
-Kotlin:
-```kotlin
-button.setOnClickListener {
-    Survicate.invokeEvent("userPressedPurchase")
-}
 ```
 
 Please keep in mind that user traits are cached, you only have to provide them once, e.g. when user logs in, NOT after each init().
@@ -206,12 +238,6 @@ You can also change their values at any time (which may potentially trigger show
 
 If you need to test surveys on your device, `reset()` method might be helpful. This method will reset all user data stored on your device (views, traits, answers).
 
-Java:
-```java
-Survicate.reset();
-```
-
-Kotlin:
 ```kotlin
 Survicate.reset()
 ```
