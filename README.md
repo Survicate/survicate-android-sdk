@@ -56,9 +56,9 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:1.15.0"
 
     // since SDK version 2.0.0
-    implementation "io.coil-kt:coil-base:2.5.0"
-    implementation "io.coil-kt:coil-gif:2.5.0"
-    implementation "io.coil-kt:coil-svg:2.5.0"
+    implementation "io.coil-kt:coil-base:2.4.0"
+    implementation "io.coil-kt:coil-gif:2.4.0"
+    implementation "io.coil-kt:coil-svg:2.4.0"
 }
 ```
 
