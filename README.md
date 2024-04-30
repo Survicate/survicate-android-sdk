@@ -50,10 +50,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.3.2"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation "androidx.transition:transition:1.4.1"
-    implementation "androidx.annotation:annotation:1.7.0"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
-    implementation "com.squareup.moshi:moshi:1.15.0"
-    implementation "com.squareup.moshi:moshi-kotlin:1.15.0"
+    implementation "androidx.annotation:annotation:1.7.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0'
+    implementation "com.squareup.moshi:moshi:1.15.1"
+    implementation "com.squareup.moshi:moshi-kotlin:1.15.1"
 
     // since SDK version 2.0.0
     implementation "io.coil-kt:coil-base:2.4.0"
@@ -172,7 +172,15 @@ You can log custom user events throughout your application. They can later be us
 Kotlin:
 ```kotlin
 button.setOnClickListener {
+    // event without properties
     Survicate.invokeEvent("userPressedPurchase")
+
+    // event with properties
+    val eventProperties = mapOf(
+        "property1" to "value1",
+        "property2" to "value2"
+    )
+    Survicate.invokeEvent("userPressedPurchase", eventProperties)
 }
 ```
 
@@ -180,8 +188,14 @@ Java:
 ```java
 purchaseBtn.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
-        // ...
+        // event without properties
         Survicate.invokeEvent("userPressedPurchase");
+
+        // event with properties
+        Map<String, String> eventProperties = new HashMap<>();
+        eventProperties.put("property1", "value1");
+        eventProperties.put("property2", "value2");
+        Survicate.invokeEvent("userPressedPurchase", eventProperties);
     }
 });
 ```
