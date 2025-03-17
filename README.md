@@ -45,20 +45,20 @@ Add the following dependencies to your app's `build.gradle` file:
 dependencies {
     // ...
     implementation files('libs/Survicate.aar')
-    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.appcompat:appcompat:1.7.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.3.2"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
-    implementation "androidx.transition:transition:1.4.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.0"
+    implementation "androidx.transition:transition:1.5.1"
     implementation "androidx.annotation:annotation:1.9.1"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
-    implementation "com.squareup.moshi:moshi:1.15.1"
-    implementation "com.squareup.moshi:moshi-kotlin:1.15.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+    implementation "com.squareup.moshi:moshi:1.15.2"
+    implementation "com.squareup.moshi:moshi-kotlin:1.15.2"
+    implementation "com.survicate:survicate-sdk-core-android:1.0.0"
 
-    // since SDK version 2.0.0
-    implementation "io.coil-kt:coil-base:2.4.0"
-    implementation "io.coil-kt:coil-gif:2.4.0"
-    implementation "io.coil-kt:coil-svg:2.4.0"
+    implementation "io.coil-kt:coil-base:2.7.0"
+    implementation "io.coil-kt:coil-gif:2.7.0"
+    implementation "io.coil-kt:coil-svg:2.7.0"
 }
 ```
 
