@@ -51,10 +51,9 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:2.2.0"
     implementation "androidx.transition:transition:1.5.1"
     implementation "androidx.annotation:annotation:1.9.1"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
     implementation "com.squareup.moshi:moshi:1.15.2"
     implementation "com.squareup.moshi:moshi-kotlin:1.15.2"
-    implementation "com.survicate:survicate"
     implementation "com.survicate:survicate-sdk-core-android:1.0.0"
 
     implementation "io.coil-kt:coil-base:2.7.0"
