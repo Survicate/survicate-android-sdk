@@ -2,7 +2,7 @@
 [![Maven](https://img.shields.io/maven-metadata/v?metadataUrl=http%3A%2F%2Frepo.survicate.com%2Fcom%2Fsurvicate%2Fsurvicate-sdk%2Fmaven-metadata.xml)](https://developers.survicate.com/mobile-sdk/#android)
 # Mobile SDK - Android
 
-The **Survicate Mobile SDK** for Android allows you to survey specific groups of your mobile app users to understand their needs, expectations, and objections. This SDK is maintained by Survicate.
+The **Survicate Mobile SDK** for Android allows you to survey specific groups of your mobile app users to understand their needs, expectations, and objections. This SDK is actively maintained by [Survicate](https://survicate.com/software/mobile-app-surveys/).
 
 For detailed guidance, refer to the [developer docs](https://developers.survicate.com/mobile-sdk/android/). If you're looking for the iOS version, visit [here](https://github.com/Survicate/survicate-ios-sdk). 
 
@@ -11,7 +11,7 @@ For detailed guidance, refer to the [developer docs](https://developers.survicat
 - Minimum SDK version: 21+
 - Compile SDK version: 34+
 
-To use this SDK you need an account at [survicate.com](https://survicate.com).
+To use this SDK, you need an account at [survicate.com](https://survicate.com).
 [Sign up](https://panel.survicate.com/#/signup) for free and locate your workspace key in the Settings.
 
 ## Installation
@@ -62,7 +62,7 @@ Add workspace key to your `AndroidManifest.xml` file:
 Initialize the SDK in the Application class:
 
 ```kotlin
-import android.app.Applicaton
+import android.app.Application
 import com.survicate.surveys.Survicate
 
 class MyApp : Application() {
@@ -74,9 +74,7 @@ class MyApp : Application() {
 ```
 
 ### Displaying Surveys
-Survicate gives you the ability to display targeted surveys to your users within your app in a simple, easy, and fast way.
-In the Survicate Panel you can choose criteria that your users have to meet in order for the surveys to appear.
-The users matching the conditions will see the survey automatically. You can set the criteria to be custom user attributes or user events you created.
+Survicate lets you easily display targeted surveys to users directly within your app. In the Survicate Panel you can choose criteria that your users have to meet in order for the surveys to appear.
 
 Available conditions:
 - Screen
@@ -87,8 +85,8 @@ Available conditions:
 - Screen orientation
 
 ### Application screens
-A survey can appear when your application user is viewing a specific screen. As an example, a survey can be triggered to show up on the home screen of the application, after a user spends there more than 10 seconds.
-To achieve such effect, you need to notify the SDK about user entering and leaving a screen, and set up a screen trigger with delay in the Survicate Panel.
+A survey can appear when your application user is viewing a specific screen. As an example, a survey can be triggered to show up on the home screen of the application, after a user spends more than 10 seconds there.
+To enable this behavior, you need to notify the SDK when the user enters and leaves a screen, and set up a screen trigger with delay in the Survicate Panel.
 
 ```kotlin
 class MainActivity : Activity() {
@@ -125,7 +123,7 @@ fun HomeScreen() {
 ```
 
 ### Events
-Log custom events to trigger surveys within your application. You can invoke events with or without additional properties:
+Log custom events to display surveys with a matching Event Trigger. Events can be invoked with or without additional properties:
 
 ```kotlin
 button.setOnClickListener {
@@ -142,7 +140,7 @@ button.setOnClickListener {
 ```
 
 ### User traits
-Assign custom attributes to users, which can be used to trigger surveys or filter results in the Survicate Panel.
+Assign custom attributes to users. These can be used to trigger surveys based on your Audience settings or to filter answers in the Survicate Panel.
 
 ```kotlin
 // set a single trait
@@ -165,7 +163,7 @@ Survicate.setUserTraits(traits)
 ```
 
 Traits are cached in `SharedPreferences`, so you don't need to provide them on every app start. For example, set the `user_id` once at login rather than on each initialization. 
-You may also update traits at any time, which could trigger a survey.
+You can also update traits at any time, which could trigger a survey.
 
 ### Listeners
 Register a `SurvicateEventListener` to receive callbacks for the following events:
@@ -198,7 +196,7 @@ Survicate.removeEventListener(listener)
 ```
 
 ### Reset
-If you need to test surveys on your device, `reset()` method might be helpful. This method will reset all user data stored on the device (views, traits, answers).
+If you need to test surveys on your device, the `reset()` method might be helpful. This method will clear all user data stored on the device (views, traits, answers).
 
 ```kotlin
 Survicate.reset()
