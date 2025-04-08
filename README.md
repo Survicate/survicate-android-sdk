@@ -206,4 +206,4 @@ Survicate.reset()
 
 ## Customer Support
 
-👋 If you bump into any problems or need further assistance, contact us at hello@survicate.com
+👋 If you bump into any problems or need more support, contact us at hello@survicate.com
