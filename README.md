@@ -165,6 +165,22 @@ Survicate.setUserTraits(traits)
 Traits are cached in `SharedPreferences`, so you don't need to provide them on every app start. For example, set the `user_id` once at login rather than on each initialization. 
 You can also update traits at any time, which could trigger a survey.
 
+### Locale
+By default, the SDK uses the device locale (`Locale.getDefault()`) to determine the survey language and apply locale-based targeting.
+
+If your app supports custom language settings, you can override the locale with:
+
+```kotlin
+Survicate.setLocale("en")
+```
+
+Accepted values should follow the IETF BCP 47 format:
+- Language only, e.g., `es`, `fr`
+- Language + region, e.g., `en-US`, `pt-BR`
+- Three-letter codes, e.g., `haw`, `yue` (only for locales without two-letter equivalents)
+
+The locale setting is not persisted across sessions - you should call it after each SDK initialization.
+
 ### Listeners
 Register a `SurvicateEventListener` to receive callbacks for the following events:
 - Survey displayed
@@ -196,11 +212,13 @@ Survicate.removeEventListener(listener)
 ```
 
 ### Reset
-If you need to test surveys on your device, the `reset()` method might be helpful. This method will clear all user data stored on the device (views, traits, answers).
+Use `reset()` to simplify testing. This method clears all user data stored on the device — including views, traits, and answers — as well as any in-memory cache.
 
 ```kotlin
 Survicate.reset()
 ```
+
+Note that this method is not indended for use in production code.
 
 ## Customer Support
 
