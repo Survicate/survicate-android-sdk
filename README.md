@@ -46,8 +46,6 @@ dependencies {
 }
 ```
 
-For other installation methods visit our [developer docs](https://developers.survicate.com/mobile-sdk/android/).
-
 ## Setup
 Add workspace key to your `AndroidManifest.xml` file:
 ```xml
@@ -222,4 +220,4 @@ Note that this method is not indended for use in production code.
 
 ## Customer Support
 
-👋 If you bump into any problems or need more support, contact us at hello@survicate.com
+👋 If you bump into any problems or need more support, contact us at support@survicate.com
