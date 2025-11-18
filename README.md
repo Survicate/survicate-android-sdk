@@ -46,8 +46,6 @@ dependencies {
 }
 ```
 
-For other installation methods visit our [developer docs](https://developers.survicate.com/mobile-sdk/android/).
-
 ## Setup
 Add workspace key to your `AndroidManifest.xml` file:
 ```xml
@@ -220,6 +218,12 @@ Survicate.reset()
 
 Note that this method is not indended for use in production code.
 
-## Customer Support
+## Issues
 
-👋 If you bump into any problems or need more support, contact us at hello@survicate.com
+Got an Issue?
+
+To make things more streamlined, we’ve transitioned our issue reporting to our customer support platform. If you encounter any bugs or have feedback, please reach out to our customer support team. Your insights are invaluable to us, and we’re here to help ensure your experience is top-notch!
+
+Contact us via Intercom in the application, or drop us an email at: [support@survicate.com]
+
+Thank you for your support and understanding!
