@@ -9,7 +9,7 @@ For detailed guidance, refer to the [developer docs](https://developers.survicat
 ## Requirements
 
 - Minimum SDK version: 21+
-- Compile SDK version: 34+
+- Compile SDK version: 35+
 
 To use this SDK, you need an account at [survicate.com](https://survicate.com).
 [Sign up](https://panel.survicate.com/#/signup) for free and locate your workspace key in the Settings.
